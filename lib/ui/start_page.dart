@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Homepage extends StatelessWidget {
-  const Homepage({Key? key}) : super(key: key);
+class Startpage extends StatelessWidget {
+  const Startpage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class Homepage extends StatelessWidget {
       home: Stack(children: [
         // Stretching image all over the screen
         Image.asset(
-          'image/homePage.jpg',
+          'image/startPage.jpg',
           fit: BoxFit.cover,
           height: double.infinity,
           width: double.infinity,
