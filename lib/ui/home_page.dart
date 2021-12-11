@@ -183,7 +183,47 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 90),
             Row(
               children: [
-                const CustomTextBox(),
+                Center(
+                    child: Row(
+                  children: const [
+                    SizedBox(
+                      width: 20,
+                    ),
+                    SizedBox(
+                      width: 270,
+                      child: TextField(
+                        cursorColor: Colors.brown,
+                        style: TextStyle(
+                            fontSize: 18,
+                            height: 1.5,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.brown),
+                        decoration: InputDecoration(
+                          hintText: 'Search Bar',
+                          contentPadding:
+                              EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                          labelStyle: TextStyle(),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.brown,
+                              width: 4,
+                            ),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.brown,
+                              width: 4,
+                            ),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0)),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
                 const SizedBox(width: 15),
                 Column(
                   children: [
@@ -226,52 +266,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ]),
-    ));
-  }
-}
-
-class CustomTextBox extends StatelessWidget {
-  const CustomTextBox({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Row(
-      children: const [
-        SizedBox(
-          width: 20,
-        ),
-        SizedBox(
-          width: 270,
-          child: TextField(
-            cursorColor: Colors.brown,
-            style: TextStyle(
-                fontSize: 18,
-                height: 1.5,
-                fontWeight: FontWeight.bold,
-                color: Colors.brown),
-            decoration: InputDecoration(
-              hintText: 'Search Bar',
-              contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-              labelStyle: TextStyle(),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.brown,
-                  width: 4,
-                ),
-                borderRadius: BorderRadius.all(Radius.circular(30.0)),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.brown,
-                  width: 4,
-                ),
-                borderRadius: BorderRadius.all(Radius.circular(30.0)),
-              ),
-            ),
-          ),
-        ),
-      ],
     ));
   }
 }
