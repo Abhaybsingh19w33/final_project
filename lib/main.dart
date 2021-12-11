@@ -1,4 +1,5 @@
-import 'package:final_project/ui/start_page.dart';
+import 'package:final_project/ui/home_page.dart';
+// import 'package:final_project/ui/start_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,6 +12,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const Startpage();
+    return const MaterialApp(
+      home: HomePage(),
+    );
+    // Startpage();
   }
 }
