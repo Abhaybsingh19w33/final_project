@@ -1,3 +1,5 @@
+import 'package:final_project/ui/home_page.dart';
+import 'package:final_project/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class Startpage extends StatelessWidget {
@@ -33,7 +35,10 @@ class Startpage extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Constants.prefs?.setBool("loggedIn", true);
+                  Navigator.pushReplacementNamed(context, HomePage.routeName);
+                },
                 child: const Text(
                   "Let's go!",
                   style: TextStyle(fontSize: 20),

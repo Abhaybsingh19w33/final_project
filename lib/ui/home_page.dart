@@ -1,7 +1,9 @@
+import 'package:final_project/ui/chat_bot_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
+  static const String routeName = "/home";
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +167,12 @@ class HomePage extends StatelessWidget {
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return ChatBotPage();
+                          }));
+                        },
                         child: const Text(
                           "Chat Bot",
                           style: TextStyle(fontSize: 20),
