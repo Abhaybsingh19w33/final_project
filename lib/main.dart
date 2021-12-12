@@ -1,5 +1,6 @@
+import 'package:final_project/ui/chat_bot_page.dart';
 import 'package:final_project/ui/home_page.dart';
-// import 'package:final_project/ui/start_page.dart';
+import 'package:final_project/ui/start_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
