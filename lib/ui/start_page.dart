@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class Startpage extends StatelessWidget {
   const Startpage({Key? key}) : super(key: key);
+  static const String routeName = "/start";
 
   @override
   Widget build(BuildContext context) {
