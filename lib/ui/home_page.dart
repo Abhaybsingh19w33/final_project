@@ -1,9 +1,147 @@
+import 'dart:ui';
+
+import 'package:final_project/db/articles_database.dart';
+import 'package:final_project/db/penalty_database.dart';
+import 'package:final_project/db/rule_database.dart';
+import 'package:final_project/models/article.dart';
+import 'package:final_project/models/penalty.dart';
+import 'package:final_project/models/rule.dart';
+import 'package:final_project/ui/article_detail_page.dart';
 import 'package:final_project/ui/chat_bot_page.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
   static const String routeName = "/home";
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late List<Articles> article;
+  late List<Penalty> penalty;
+  late List<Rule> rule;
+  bool isLoading = false;
+  late String _searchText = '';
+  final searchTextController = TextEditingController();
+  late Set<Map<String, String>> result = {};
+  late List<Map<String, String>> resultList = [];
+  late Map<String, String> tempResultList = {};
+
+  @override
+  void dispose() {
+    searchTextController.dispose();
+    super.dispose();
+  }
+
+  Future getData() async {
+    result.clear();
+    tempResultList.clear();
+    resultList.clear();
+    setState(() => isLoading = true);
+
+    article = await ArticlesDatabase.instance.readAllNotes();
+
+    for (int i = 0; i < article.length; i++) {
+      bool temp = false;
+
+      penalty =
+          await PenaltyDatabase.instance.readPenalty(article[i].article_id);
+
+      for (int j = 0; j < penalty.length; j++) {
+        if (penalty[j]
+            .penalty
+            .toLowerCase()
+            .contains(_searchText.toLowerCase())) {
+          result.add({penalty[j].article_id: article[i].title});
+
+          temp = true;
+          break;
+        }
+      }
+
+      rule = await RuleDatabase.instance.readRule(article[i].article_id);
+
+      if (!temp) {
+        for (int j = 0; j < rule.length; j++) {
+          if (rule[j].rule.toLowerCase().contains(_searchText.toLowerCase())) {
+            result.add({rule[j].article_id: article[i].title});
+
+            temp = true;
+            break;
+          }
+        }
+      } else {
+        continue;
+      }
+
+      if (!temp) {
+        if (article[i]
+            .articleNo
+            .toLowerCase()
+            .contains(_searchText.toLowerCase())) {
+          result.add({article[i].article_id: article[i].title});
+
+          temp = true;
+          break;
+        } else {
+          continue;
+        }
+      }
+
+      if (!temp) {
+        if (article[i].date.toLowerCase().contains(_searchText.toLowerCase())) {
+          result.add({article[i].article_id: article[i].title});
+          temp = true;
+          break;
+        } else {
+          continue;
+        }
+      }
+
+      if (!temp) {
+        if (article[i]
+            .intent
+            .toLowerCase()
+            .contains(_searchText.toLowerCase())) {
+          result.add({article[i].article_id: article[i].title});
+
+          temp = true;
+          break;
+        } else {
+          continue;
+        }
+      }
+      if (!temp) {
+        if (article[i]
+            .title
+            .toLowerCase()
+            .contains(_searchText.toLowerCase())) {
+          result.add({article[i].article_id: article[i].title});
+
+          temp = true;
+          break;
+        } else {
+          continue;
+        }
+      }
+    }
+
+    setState(() => isLoading = false);
+
+    for (var element in result) {
+      element.forEach((key, value) {
+        tempResultList[key] = value;
+      });
+    }
+
+    tempResultList.forEach((key, value) {
+      resultList.add({key: value});
+    });
+
+    return resultList;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +149,6 @@ class HomePage extends StatelessWidget {
         home: Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(children: [
-        // Stretching image all over the screen
         Image.asset(
           'image/homePage.jpg',
           fit: BoxFit.cover,
@@ -26,7 +163,6 @@ class HomePage extends StatelessWidget {
                 Expanded(
                   flex: 6,
                   child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(
@@ -183,8 +319,6 @@ class HomePage extends StatelessWidget {
             )
           ],
         ),
-        // -----------------------------------------------------------------
-        // now stacking search bar, search button, search text and output card
         Column(
           children: [
             const SizedBox(height: 90),
@@ -192,20 +326,20 @@ class HomePage extends StatelessWidget {
               children: [
                 Center(
                     child: Row(
-                  children: const [
-                    SizedBox(
+                  children: [
+                    const SizedBox(
                       width: 20,
                     ),
                     SizedBox(
                       width: 270,
                       child: TextField(
                         cursorColor: Colors.brown,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 18,
                             height: 1.5,
                             fontWeight: FontWeight.bold,
                             color: Colors.brown),
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Search Bar',
                           contentPadding:
                               EdgeInsets.symmetric(vertical: 0, horizontal: 10),
@@ -227,6 +361,7 @@ class HomePage extends StatelessWidget {
                                 BorderRadius.all(Radius.circular(30.0)),
                           ),
                         ),
+                        controller: searchTextController,
                       ),
                     ),
                   ],
@@ -244,7 +379,17 @@ class HomePage extends StatelessWidget {
                           borderRadius: BorderRadius.all(Radius.circular(24)),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          _searchText = searchTextController.text;
+
+                          if (_searchText.isEmpty) {
+                            Container();
+                          } else {
+                            getData();
+                          }
+                        });
+                      },
                       child: const Icon(Icons.search, color: Colors.white),
                     ),
                     const SizedBox(
@@ -262,12 +407,12 @@ class HomePage extends StatelessWidget {
             Card(
               color: Colors.red.shade200,
               shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(2)),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
-              child: const SizedBox(
-                child: Text("This is a card, results will appear here"),
-                width: 270,
-                height: 350,
+              child: SizedBox(
+                child: dataList(),
+                width: 370,
+                height: 475,
               ),
             ),
           ],
@@ -275,4 +420,44 @@ class HomePage extends StatelessWidget {
       ]),
     ));
   }
+
+  Widget dataList() => ListView.builder(
+      scrollDirection: Axis.vertical,
+      itemCount: resultList.length,
+      itemBuilder: (BuildContext context, int index) {
+        String key = resultList[index].keys.first;
+        String value = resultList[index].values.first;
+
+        // return Container(
+        //   color: Colors.blue[50],
+        //   child: ListTile(
+        //     // leading: Icon(Icons.add),
+        //     title: Text(value),
+        //     // trailing: Icon(Icons.done),
+        //     // subtitle: Text('This is subtitle'),
+        //     // selected: true,
+        //     onTap: () async {
+        //       await Navigator.push(context,
+        //           MaterialPageRoute(builder: (context) {
+        //         return ArticleDetailPage(articleId: key);
+        //       }));
+        //     },
+        //   ),
+        // );
+
+        return ListTile(
+          leading: const Icon(Icons.play_arrow_rounded),
+          title: Text(
+            value,
+            style: TextStyle(
+              color: Colors.brown[800],
+            ),
+          ),
+          onTap: () async {
+            await Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return ArticleDetailPage(articleId: key);
+            }));
+          },
+        );
+      });
 }
