@@ -5,6 +5,7 @@ import "package:final_project/db/rule_database.dart";
 import "package:final_project/models/article.dart";
 import "package:final_project/models/penalty.dart";
 import "package:final_project/models/rule.dart";
+import 'package:flutter/services.dart';
 
 class ArticleDetailPage extends StatefulWidget {
   final String articleId;
@@ -30,7 +31,10 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
   @override
   void initState() {
     super.initState();
-
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     refreshNote();
   }
 

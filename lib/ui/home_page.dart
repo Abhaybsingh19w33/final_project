@@ -9,6 +9,7 @@ import 'package:final_project/models/rule.dart';
 import 'package:final_project/ui/article_detail_page.dart';
 import 'package:final_project/ui/chat_bot_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -28,6 +29,15 @@ class _HomePageState extends State<HomePage> {
   late Set<Map<String, String>> result = {};
   late List<Map<String, String>> resultList = [];
   late Map<String, String> tempResultList = {};
+
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+  }
 
   @override
   void dispose() {

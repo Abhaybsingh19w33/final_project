@@ -1,9 +1,24 @@
 import 'package:final_project/models/chat_message_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // ignore: must_be_immutable
-class ChatBotPage extends StatelessWidget {
+class ChatBotPage extends StatefulWidget {
   ChatBotPage({Key? key}) : super(key: key);
+
+  @override
+  State<ChatBotPage> createState() => _ChatBotPageState();
+}
+
+class _ChatBotPageState extends State<ChatBotPage> {
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+  }
 
   List<ChatMessage> messages = [
     ChatMessage(messageContent: "Hello, Will", messageType: "receiver"),

@@ -1,10 +1,25 @@
 import 'package:final_project/ui/home_page.dart';
 import 'package:final_project/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class Startpage extends StatelessWidget {
+class Startpage extends StatefulWidget {
   const Startpage({Key? key}) : super(key: key);
   static const String routeName = "/start";
+
+  @override
+  State<Startpage> createState() => _StartpageState();
+}
+
+class _StartpageState extends State<Startpage> {
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+  }
 
   @override
   Widget build(BuildContext context) {
