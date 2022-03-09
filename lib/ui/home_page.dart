@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:final_project/db/articles_database.dart';
 import 'package:final_project/db/penalty_database.dart';
 import 'package:final_project/db/rule_database.dart';
@@ -316,7 +314,7 @@ class _HomePageState extends State<HomePage> {
                         onPressed: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return ChatBotPage();
+                            return const ChatBotPage();
                           }));
                         },
                         child: const Text(

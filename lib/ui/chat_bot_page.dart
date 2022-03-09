@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 // ignore: must_be_immutable
 class ChatBotPage extends StatefulWidget {
-  ChatBotPage({Key? key}) : super(key: key);
+  const ChatBotPage({Key? key}) : super(key: key);
 
   @override
   State<ChatBotPage> createState() => _ChatBotPageState();
