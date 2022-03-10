@@ -154,279 +154,162 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Stack(children: [
-        Image.asset(
-          'image/homePage.jpg',
-          fit: BoxFit.cover,
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          alignment: Alignment.center,
-        ),
-        Column(
-          children: [
-            Row(
+          resizeToAvoidBottomInset: false,
+          body: Stack(children: [
+            Image.asset(
+              'image/homePage.jpg',
+              fit: BoxFit.cover,
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              alignment: Alignment.center,
+            ),
+            Column(
               children: [
-                Expanded(
-                  flex: 6,
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 5,
+                      child: Column(children: [
                         const SizedBox(
-                          height: 650,
+                          height: 683,
                         ),
-                        Stack(
-                          children: [
-                            Column(
-                              children: [
-                                const SizedBox(
-                                  height: 11,
-                                ),
-                                Container(
-                                  color: Colors.brown,
-                                  height: 26,
-                                  child: const Text(
-                                    "----",
-                                    style: TextStyle(color: Colors.brown),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                onPrimary: Colors.white,
-                                primary: Colors.brown,
-                                minimumSize: const Size(130, 26),
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
-                                ),
-                              ),
-                              onPressed: () {},
-                              child: const Text(
-                                "Introduction",
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            ),
-                          ],
+                        Image.asset(
+                          'image/chatbotIcon.jpg',
+                          fit: BoxFit.none,
+                          alignment: Alignment.center,
                         ),
-                        Stack(
-                          children: [
-                            Column(
-                              children: [
-                                const SizedBox(
-                                  height: 11,
-                                ),
-                                Container(
-                                  color: Colors.brown,
-                                  height: 26,
-                                  child: const Text(
-                                    "----",
-                                    style: TextStyle(color: Colors.brown),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                onPrimary: Colors.white,
-                                primary: Colors.brown,
-                                minimumSize: const Size(130, 26),
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
-                                ),
-                              ),
-                              onPressed: () {},
-                              child: const Text(
-                                "Why it is Necessary",
-                                style: TextStyle(fontSize: 20),
+                        const SizedBox(height: 0),
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              onPrimary: Colors.white,
+                              primary: Colors.pinkAccent.shade100,
+                              minimumSize: const Size(130, 26),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
                               ),
                             ),
-                          ],
-                        ),
-                        Stack(
-                          children: [
-                            Column(
-                              children: [
-                                const SizedBox(
-                                  height: 11,
-                                ),
-                                Container(
-                                  color: Colors.brown,
-                                  height: 26,
-                                  child: const Text(
-                                    "----",
-                                    style: TextStyle(color: Colors.brown),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                onPrimary: Colors.white,
-                                primary: Colors.brown,
-                                minimumSize: const Size(130, 26),
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
-                                ),
-                              ),
-                              onPressed: () {},
-                              child: const Text(
-                                "Things to know about",
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            ),
-                          ],
-                        ),
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return const ChatBotPage();
+                              }));
+                            },
+                            child: const Text(
+                              "Chat Bot",
+                              style: TextStyle(fontSize: 20),
+                            )),
                       ]),
-                ),
-                Expanded(
-                  flex: 4,
-                  child: Column(children: [
-                    const SizedBox(
-                      height: 683,
                     ),
-                    Image.asset(
-                      'image/chatbotIcon.jpg',
-                      fit: BoxFit.none,
-                      alignment: Alignment.center,
-                    ),
-                    const SizedBox(height: 0),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          onPrimary: Colors.white,
-                          primary: Colors.pinkAccent.shade100,
-                          minimumSize: const Size(130, 26),
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return const ChatBotPage();
-                          }));
-                        },
-                        child: const Text(
-                          "Chat Bot",
-                          style: TextStyle(fontSize: 20),
-                        )),
-                  ]),
-                ),
-              ],
-            )
-          ],
-        ),
-        Column(
-          children: [
-            const SizedBox(height: 90),
-            Row(
-              children: [
-                Center(
-                    child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    SizedBox(
-                      width: 270,
-                      child: TextField(
-                        cursorColor: Colors.brown,
-                        style: const TextStyle(
-                            fontSize: 18,
-                            height: 1.5,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.brown),
-                        decoration: const InputDecoration(
-                          hintText: 'Search Bar',
-                          contentPadding:
-                              EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                          labelStyle: TextStyle(),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.brown,
-                              width: 4,
-                            ),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.brown,
-                              width: 4,
-                            ),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
-                          ),
-                        ),
-                        controller: searchTextController,
-                      ),
-                    ),
-                  ],
-                )),
-                const SizedBox(width: 15),
-                Column(
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        onPrimary: Colors.deepOrange.shade100,
-                        primary: Colors.brown,
-                        minimumSize: const Size(50, 50),
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(24)),
-                        ),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _searchText = searchTextController.text;
-
-                          if (_searchText.isEmpty) {
-                            Container();
-                          } else {
-                            getData();
-                          }
-                        });
-                      },
-                      child: const Icon(Icons.search, color: Colors.white),
-                    ),
-                    const SizedBox(
-                      height: 2,
-                    ),
-                    const Text(
-                      "Search",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )
                   ],
                 )
               ],
             ),
-            const SizedBox(height: 10),
-            Card(
-              color: Colors.red.shade200,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-              child: SizedBox(
-                child: dataList(),
-                width: 370,
-                height: 475,
-              ),
+            Column(
+              children: [
+                const SizedBox(height: 90),
+                Row(
+                  children: [
+                    Center(
+                        child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        SizedBox(
+                          width: 270,
+                          child: TextField(
+                            cursorColor: Colors.brown,
+                            style: const TextStyle(
+                                fontSize: 18,
+                                height: 1.5,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.brown),
+                            decoration: const InputDecoration(
+                              hintText: 'Search Bar',
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 10),
+                              labelStyle: TextStyle(),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.brown,
+                                  width: 4,
+                                ),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30.0)),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.brown,
+                                  width: 4,
+                                ),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30.0)),
+                              ),
+                            ),
+                            controller: searchTextController,
+                          ),
+                        ),
+                      ],
+                    )),
+                    const SizedBox(width: 15),
+                    Column(
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            onPrimary: Colors.deepOrange.shade100,
+                            primary: Colors.brown,
+                            minimumSize: const Size(50, 50),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(24)),
+                            ),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _searchText = searchTextController.text;
+
+                              if (_searchText.isEmpty) {
+                                Container();
+                              } else {
+                                getData();
+                              }
+                            });
+                          },
+                          child: const Icon(Icons.search, color: Colors.white),
+                        ),
+                        const SizedBox(
+                          height: 2,
+                        ),
+                        const Text(
+                          "Search",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Card(
+                  color: Colors.red.shade200,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                  ),
+                  child: SizedBox(
+                    child: dataList(),
+                    width: 370,
+                    height: 475,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ]),
-    ));
+          ]),
+        ));
   }
 
   Widget dataList() => ListView.builder(
