@@ -52,6 +52,32 @@ class ArticlesDatabase {
     }
   }
 
+  Future<Articles> readNoteThroughTitle(String title) async {
+    final db = await instance.database;
+
+    final maps = await db.query(
+      tablearticles,
+      columns: ArticlesFields.values,
+      where: '${ArticlesFields.title} = ?',
+      whereArgs: [title],
+    );
+
+    if (maps.isNotEmpty) {
+      return Articles.fromJson(maps.first);
+    } else {
+      if (title == "not found") {
+        return const Articles(
+            article_id: "null",
+            articleNo: "null",
+            title: "null not found",
+            date: "null",
+            intent: "null");
+      }
+
+      throw Exception('ID $title not found');
+    }
+  }
+
   Future<List<Articles>> readAllNotes() async {
     final db = await instance.database;
 

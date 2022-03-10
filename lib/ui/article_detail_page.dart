@@ -68,8 +68,6 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
     }
 
     setState(() => isLoading = false);
-    // print("data");
-    // print(data);
   }
 
   @override
@@ -122,14 +120,12 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
         String value = data[index].values.first;
 
         if (key == "article_id") {
-          // return ListTile(title: Text("Article ID : " + value));
           return const SizedBox(
             height: 60,
           );
         } else if (key == "articleNo") {
           if (value == "") {
-            return const ListTile(
-                title: Text("Article No : No article number"));
+            return Container();
           } else {
             return ListTile(
               title: Text("Article No : " + value),
@@ -137,7 +133,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
           }
         } else if (key == "title") {
           if (value == "") {
-            return const ListTile(title: Text("Artio : No article title"));
+            return Container();
           } else {
             return ListTile(
               title: Text("Article Title : " + value),
@@ -145,8 +141,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
           }
         } else if (key == "date") {
           if (value == "") {
-            return const ListTile(
-                title: Text("Article Date : No article date"));
+            return Container();
           } else {
             return ListTile(
               title: Text("Article Date : " + value),
@@ -154,8 +149,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
           }
         } else if (key == "intent") {
           if (value == "") {
-            return const ListTile(
-                title: Text("Article Intent : No article intent"));
+            return Container();
           } else {
             return ListTile(
               title: Text("Article Intent : " + value),
@@ -163,7 +157,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
           }
         } else if (key.contains("penalty")) {
           if (value == "Null") {
-            return const ListTile(title: Text("Penalty : No Penalty data"));
+            return Container();
           } else {
             return ListTile(
               title: Text("Penalty : " + value),
@@ -171,7 +165,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
           }
         } else if (key.contains("rule")) {
           if (value == "") {
-            return const ListTile(title: Text("Rule : No Rule data"));
+            return Container();
           } else {
             return ListTile(
               title: Text("Rule : " + value),

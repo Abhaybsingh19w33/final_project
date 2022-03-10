@@ -436,23 +436,6 @@ class _HomePageState extends State<HomePage> {
         String key = resultList[index].keys.first;
         String value = resultList[index].values.first;
 
-        // return Container(
-        //   color: Colors.blue[50],
-        //   child: ListTile(
-        //     // leading: Icon(Icons.add),
-        //     title: Text(value),
-        //     // trailing: Icon(Icons.done),
-        //     // subtitle: Text('This is subtitle'),
-        //     // selected: true,
-        //     onTap: () async {
-        //       await Navigator.push(context,
-        //           MaterialPageRoute(builder: (context) {
-        //         return ArticleDetailPage(articleId: key);
-        //       }));
-        //     },
-        //   ),
-        // );
-
         return ListTile(
           leading: const Icon(Icons.play_arrow_rounded),
           title: Text(
