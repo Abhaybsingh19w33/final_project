@@ -73,6 +73,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: isLoading
             ? const Center(child: CircularProgressIndicator())

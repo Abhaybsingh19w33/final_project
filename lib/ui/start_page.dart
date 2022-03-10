@@ -24,6 +24,7 @@ class _StartpageState extends State<Startpage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       // Stack will stack image and button
       home: Stack(children: [
         // Stretching image all over the screen
