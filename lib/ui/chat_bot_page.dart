@@ -121,27 +121,44 @@ class _ChatBotPageState extends State<ChatBotPage> {
                         child: Container(
                           color: Colors.deepOrange[100],
                         )),
-                    SizedBox(
-                      height: 27,
-                      child: Container(
-                        child: const Center(
-                            child: Text(
-                          "Any Questions? Ask Chat Bot!",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        )),
-                        color: Colors.deepOrange.shade200,
+                    Column(children: [
+                      SizedBox(
+                        height: 27,
+                        child: Container(
+                          child: const Center(
+                              child: Text(
+                            "Any Questions? Ask Our Recomendation",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          )),
+                          color: Colors.deepOrange.shade200,
+                        ),
                       ),
-                    ),
+                      SizedBox(
+                        height: 27,
+                        child: Container(
+                          child: const Center(
+                              child: Text(
+                            "System!",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          )),
+                          color: Colors.deepOrange.shade200,
+                        ),
+                      ),
+                    ]),
                   ]),
                   // chat box
                   Column(
                     children: [
                       SizedBox(
-                        height: 585,
+                        height: 573,
                         child: SingleChildScrollView(
                           reverse: true,
                           physics: const BouncingScrollPhysics(),

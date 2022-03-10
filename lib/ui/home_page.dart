@@ -185,7 +185,7 @@ class _HomePageState extends State<HomePage> {
                             style: ElevatedButton.styleFrom(
                               onPrimary: Colors.white,
                               primary: Colors.pinkAccent.shade100,
-                              minimumSize: const Size(130, 26),
+                              minimumSize: const Size(130, 35),
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20),
                               shape: const RoundedRectangleBorder(
@@ -200,7 +200,7 @@ class _HomePageState extends State<HomePage> {
                               }));
                             },
                             child: const Text(
-                              "Chat Bot",
+                              "Recommendation System",
                               style: TextStyle(fontSize: 20),
                             )),
                       ]),
